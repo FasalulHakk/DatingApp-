@@ -1,15 +1,14 @@
 using API.Data;
 using API.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
 
-    [ApiController]
-    [Route("api/users")] //  /api/users
-
-    public class UsersController
+    [Authorize]
+    public class UsersController :BaseApiController
     {
         private readonly DataConetxt _conetxt;
 
@@ -18,6 +17,7 @@ namespace API.Controllers
             _conetxt = conetxt;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
@@ -32,6 +32,8 @@ namespace API.Controllers
             var user = await _conetxt.Users.FindAsync(id);
             return user;
         }
+
+        
 
     }
 }
