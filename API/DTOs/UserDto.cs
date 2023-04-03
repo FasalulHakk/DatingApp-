@@ -6,5 +6,6 @@ namespace API.DTOs
 
         public String Token { get; set; }
         public string PhotoUrl { get; set; }
+        public string KnownAs { get; set; }
     }
 }
