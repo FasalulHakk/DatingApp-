@@ -7,10 +7,10 @@ namespace API.Controllers
 {
     public class BuggyController: BaseApiController
     {
-        private readonly DataConetxt _conetxt;
-        public BuggyController(DataConetxt conetxt)
+        private readonly DataContext _context;
+        public BuggyController(DataContext context)
         {
-            _conetxt = conetxt;
+            _context = context;
             
         }
 
@@ -24,7 +24,7 @@ namespace API.Controllers
         [HttpGet("not-found")]
         public ActionResult<AppUser>GetNotFound()
         {
-            var thing = _conetxt.Users.Find(-1);
+            var thing = _context.Users.Find(-1);
 
             if(thing == null) return NotFound();
             
@@ -34,7 +34,7 @@ namespace API.Controllers
         [HttpGet("server-error")]
         public ActionResult<string>GetServerError()
         {
-            var thing = _conetxt.Users.Find(-1);
+            var thing = _context.Users.Find(-1);
 
             var thingToReturn = thing.ToString();
 
