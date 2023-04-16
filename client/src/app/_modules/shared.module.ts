@@ -11,6 +11,8 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { TimeagoModule } from 'ngx-timeago';
 import { MemberDetailedResolver } from '../_resolvers/member-detailed.resolver';
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 
 
 
@@ -35,6 +37,7 @@ import { MemberDetailedResolver } from '../_resolvers/member-detailed.resolver';
     PaginationModule.forRoot(),
     ButtonsModule.forRoot(),
     TimeagoModule.forRoot(),
+    ModalModule.forRoot()
     
   ],
   exports: [
@@ -47,7 +50,8 @@ import { MemberDetailedResolver } from '../_resolvers/member-detailed.resolver';
     BsDatepickerModule,
     PaginationModule,
     ButtonsModule,
-    TimeagoModule
+    TimeagoModule,
+    ModalModule
   ]
 })
 export class SharedModule { }
