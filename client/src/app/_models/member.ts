@@ -9,7 +9,6 @@ export interface Member {
     knownAs: string
     created: string
     lastActive: string
-    myProperty: any
     introduction: string
     lookingFor: string
     interests: string

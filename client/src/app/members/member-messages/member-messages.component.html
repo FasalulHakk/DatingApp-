@@ -4,28 +4,32 @@
             No messages yet ... say hi by using the box below
         </div>
 
-        <ul *ngIf="(messageService.messageThreads$ | async)!.length > 0" class="chat">
-            <li *ngFor="let message of (messageService.messageThreads$ | async)">
-                <div>
-                    <span class="chat-img float-end">
-                        <img class="rounded-circle" 
-                            src="{{message.recipientPhotoUrl || './assets/user.png'}}" 
-                            alt="image of user" >
-                    </span>
-                    <div class="chat-body">
-                        <div class="header">
-                            <small class="text-muted">
-                                <span class="fa fa-clock-o">{{message.messageSent | timeago}}</span>
-                                <span class="text-danger" *ngIf="!message.dateRead
-                            && message.senderUsername !== username">(unread)</span>
-                            <span class="text-success" *ngIf="message.dateRead
-                            && message.senderUsername !== username">(read {{message.dateRead  | timeago}})></span>
-                        </small>
+        <ul 
+            #scrollMe
+            style="overflow: scroll; height: 500px;"
+            [scrollTop]="scrollMe.scrollHeight"
+            *ngIf="(messageService.messageThreads$ | async)!.length > 0" class="chat">
+                <li *ngFor="let message of (messageService.messageThreads$ | async)">
+                    <div>
+                        <span class="chat-img float-end">
+                            <img class="rounded-circle" 
+                                src="{{message.recipientPhotoUrl || './assets/user.png'}}" 
+                                alt="image of user" >
+                        </span>
+                        <div class="chat-body">
+                            <div class="header">
+                                <small class="text-muted">
+                                    <span class="fa fa-clock-o">{{message.messageSent | timeago}}</span>
+                                    <span class="text-danger" *ngIf="!message.dateRead
+                                && message.senderUsername !== username">(unread)</span>
+                                <span class="text-success" *ngIf="message.dateRead
+                                && message.senderUsername !== username">(read {{message.dateRead  | timeago}})></span>
+                            </small>
+                            </div>
+                            <p>{{message.content}}</p>
                         </div>
-                        <p>{{message.content}}</p>
-                    </div>
-                </div> 
-            </li>
+                    </div> 
+                </li>
         </ul>
     </div>
 
